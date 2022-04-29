@@ -7,14 +7,18 @@ import {
     useTheme, IconButton, FormControl, InputLabel, OutlinedInput, InputAdornment, List, Button
 } from "@mui/material";
 import Logo from "../assets/images/logo.jpg";
+import DarkLogo from "../assets/images/dark-logo.jpg";
 import {useEffect, useState} from "react";
 import {getPriceList} from "../services/prices";
 import useMediaQuery from '@mui/material/useMediaQuery';
 import CloseIcon from '@mui/icons-material/Close';
 import SearchIcon from '@mui/icons-material/Search';
 import CoinSelectItem from "./CoinSelectItem"
+import {useSelector} from "react-redux";
 
 const MainComponent = () => {
+    const isDark = useSelector(state => state.mode.isDark)
+
     const theme = useTheme();
     const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
 
@@ -128,12 +132,13 @@ const MainComponent = () => {
     }, [coin])
 
     return (
-        <div className={"main-component"}>
+        <div className={"main-component " + (isDark ? "is-dark" : "")}>
             <Dialog
                 open={openList}
                 fullScreen={fullScreen}
                 onClose={handleClickOpen}
                 dir={"rtl"}
+                className={"choose-coin " + (isDark ? "is-dark" : "")}
             >
                 <div
                     className={"coin-select-modal"}
@@ -195,7 +200,7 @@ const MainComponent = () => {
                 className={"home-page"}
             >
                 <Tooltip title="''" placement={"top"}>
-                    <img className={"main-logo"} src={Logo} alt="logo"/>
+                    <img className={"main-logo"} src={isDark ? DarkLogo : Logo} alt="logo"/>
                 </Tooltip>
                 <Grid
                     container

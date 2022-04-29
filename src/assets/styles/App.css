@@ -235,3 +235,52 @@
 .home-actions-button .buy-actions-button button.secondary:hover {
     border: unset !important;
 }
+.MuiAppBar-root.is-dark {
+    background-color: #000;
+}
+.MuiAppBar-root.is-dark .link {
+    color: #e0e0e0 !important;
+}
+.MuiAppBar-root.is-dark .link:hover {
+    background-color: rgba(255, 255, 255, 0.2) !important;
+}
+.App.is-dark {
+    background-color: #000;
+}
+.App.is-dark .MuiInputLabel-formControl {
+    color: rgba(255, 255, 255, 0.98) !important;
+}
+.App.is-dark fieldset {
+    border-color: rgba(255, 255, 255, 0.98) !important;
+    color: rgba(255, 255, 255, 0.98) !important;
+}
+.App.is-dark .fake-input, .App.is-dark .MuiInputBase-input {
+    color: rgba(255, 255, 255, 0.98) !important;
+}
+.App.is-dark .MuiPaper-rounded {
+    border-color: rgba(255, 255, 255, 0.98) !important;
+    color: rgba(255, 255, 255, 0.98) !important;
+}
+.choose-coin.is-dark .MuiPaper-root, .choose-coin.is-dark .coin-select-modal{
+    background-color: rgba(0, 0, 0, 0.98) !important;
+    color: rgba(255, 255, 255, 0.98) !important;
+}
+.coin-select-item-wrapper.is-dark .coin-list-item-clickable:hover, .coin-select-item-wrapper.is-dark .coin-list-item-clickable.selected {
+    background-color: rgba(255,255,255,0.2) !important;
+    transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms !important;
+}
+.choose-coin.is-dark .MuiInputLabel-formControl {
+    color: rgba(255, 255, 255, 0.98) !important;
+}
+.choose-coin.is-dark .coin-search {
+    border-color: rgba(255, 255, 255, 0.98) !important;
+    color: rgba(255, 255, 255, 0.98) !important;
+}
+.choose-coin.is-dark .MuiInputBase-input {
+    color: rgba(255, 255, 255, 0.98) !important;
+    border-color: rgba(255, 255, 255, 0.98) !important;
+}
+.choose-coin.is-dark fieldset {
+    border-color: rgba(255, 255, 255, 0.98) !important;
+    color: rgba(255, 255, 255, 0.98) !important;
+}

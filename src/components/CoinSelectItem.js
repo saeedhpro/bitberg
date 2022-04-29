@@ -1,17 +1,19 @@
 import {Grid, Icon, ListItem, ListItemButton, ListItemIcon} from "@mui/material";
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import {useSelector} from "react-redux";
 
 const CoinSelectItem = (props) => {
+    const isDark = useSelector(state => state.mode.isDark)
     return (
         <div
-            className={"coin-select-item-wrapper"}
+            className={"coin-select-item-wrapper " + (isDark ? "is-dark" : "")}
             onClick={props.onClick}
         >
             <ListItem
                 className={"coin-select-item"}
             >
                 <ListItemButton
-                    className={"coin-list-item-clickable " + (props.selected ? "selected" : "")}
+                    className={"coin-list-item-clickable " + (props.coin[0] === props.title ? "selected" : "")}
                 >
                     <Grid container spacing={2}>
                         <Grid item xs={3}>

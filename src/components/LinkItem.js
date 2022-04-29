@@ -1,7 +1,6 @@
 import {Grid, ListItem, ListItemButton, ListItemIcon} from "@mui/material";
 
 const Link = (props) => {
-    console.log(props)
     return (
         <div
             className={"link-item-wrapper"}
