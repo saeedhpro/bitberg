@@ -6,15 +6,29 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import Logo from "../assets/images/logo.jpg";
-import {Divider, Drawer} from "@mui/material";
+import {Divider, Drawer, List} from "@mui/material";
+import CloseIcon from '@mui/icons-material/Close';
+import LinkItem from "./LinkItem";
+import {getPriceList} from "../services/prices";
 
 const HeaderComponent = () => {
+    const [prices, setPrices] = useState([])
     const [menu, setMenu] = useState(false)
     const toggleMenu = () => {
         setMenu(prevState => !prevState)
     }
+    const onLinkSelected = (link) => {
+        console.log(link)
+    }
+    useEffect(() => {
+        getPriceList()
+            .then(items => {
+                const list = Object.entries(items)
+                setPrices(list)
+            })
+    }, [])
     return (
         <AppBar position="static" sx={{bgcolor: "#fff"}} elevation={0}>
             <Container maxWidth="xl">
@@ -101,7 +115,113 @@ const HeaderComponent = () => {
                     elevation={16}
                     className={"drawer"}
                 >
-                    <button>saeed</button>
+                    <Toolbar>
+                        <IconButton onClick={toggleMenu}>
+                            <CloseIcon/>
+                        </IconButton>
+                    </Toolbar>
+                    <div className={"logo-container"}>
+                        <img src={Logo} alt=""/>
+                    </div>
+                    <div className={"link-container"}>
+                        <List
+                            height={'100%'}
+                            width={'100%'}
+                        >
+                            <LinkItem
+                                name={'خانه'}
+                                title={''}
+                                icon={''}
+                                onClick={() => onLinkSelected('/')}
+                            />
+                            <LinkItem
+                                name={'پورتفوی'}
+                                title={''}
+                                icon={''}
+                                onClick={() => onLinkSelected('/')}
+                            />
+                            <LinkItem
+                                name={'قیمت لحظه ای'}
+                                title={`${prices.length.toString()} ارز دیجیتال`}
+                                icon={''}
+                                onClick={() => onLinkSelected('/')}
+                            />
+                            <LinkItem
+                                name={'کیف پول ریالی'}
+                                title={'باید وارد شوید'}
+                                icon={''}
+                                onClick={() => onLinkSelected('/')}
+                            />
+                            <Divider />
+                            <LinkItem
+                                name={'کارمزد ها'}
+                                title={''}
+                                icon={''}
+                                onClick={() => onLinkSelected('/')}
+                            />
+                            <LinkItem
+                                name={'آموزش ساخت کیف پول'}
+                                title={''}
+                                icon={''}
+                                onClick={() => onLinkSelected('/')}
+                            />
+                            <LinkItem
+                                name={'گزارش باگ'}
+                                title={''}
+                                icon={''}
+                                onClick={() => onLinkSelected('/')}
+                            />
+                            <LinkItem
+                                name={'فرصت های شغلی'}
+                                title={''}
+                                icon={''}
+                                onClick={() => onLinkSelected('/')}
+                            />
+                            <Divider />
+                            <LinkItem
+                                name={'ارتباط با مدیریت'}
+                                title={''}
+                                icon={''}
+                                onClick={() => onLinkSelected('/')}
+                            />
+                            <LinkItem
+                                name={'نظرات کاربران'}
+                                title={''}
+                                icon={''}
+                                onClick={() => onLinkSelected('/')}
+                            />
+                            <LinkItem
+                                name={'بیت گپ'}
+                                title={''}
+                                icon={''}
+                                onClick={() => onLinkSelected('/')}
+                            />
+                            <LinkItem
+                                name={'مسیر بیت برگ'}
+                                title={''}
+                                icon={''}
+                                onClick={() => onLinkSelected('/')}
+                            />
+                            <LinkItem
+                                name={'سوالات متداول'}
+                                title={''}
+                                icon={''}
+                                onClick={() => onLinkSelected('/')}
+                            />
+                            <LinkItem
+                                name={'قوانین و مقررات'}
+                                title={''}
+                                icon={''}
+                                onClick={() => onLinkSelected('/')}
+                            />
+                            <LinkItem
+                                name={'درباره ما'}
+                                title={''}
+                                icon={''}
+                                onClick={() => onLinkSelected('/')}
+                            />
+                        </List>
+                    </div>
                 </Drawer>
             </React.Fragment>
         </AppBar>

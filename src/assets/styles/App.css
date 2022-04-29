@@ -179,3 +179,59 @@
     -ms-user-select: none !important;
     user-select: none !important;
 }
+.drawer .MuiDrawer-paper{
+    min-width: 350px;
+}
+.drawer .logo-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.drawer .logo-container img {
+    max-width: 150px;
+    width: 50%;
+}
+
+.drawer .title-box {
+    display: flex;
+    flex-direction: row !important;
+    align-items: center;
+    justify-content: space-between;
+    height: 24px !important;
+}
+
+.drawer .title-box .title:last-child {
+    margin: unset !important;
+}
+.home-actions-button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-top: 24px;
+}
+.home-actions-button .buy-actions-button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.home-actions-button .buy-actions-button button{
+    width: 155px;
+    margin: 11px 4px;
+    height: 36px;
+    font-weight: 500;
+    -webkit-transition: none;
+    transition: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+.home-actions-button .buy-actions-button button.secondary {
+    color: #727272;
+    background-color: #f2f2f2;
+}
+.home-actions-button .buy-actions-button button.secondary:hover {
+    border: unset !important;
+}

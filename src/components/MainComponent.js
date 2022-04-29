@@ -4,7 +4,7 @@ import {
     Container,
     TextField,
     Dialog,
-    useTheme, IconButton, FormControl, InputLabel, OutlinedInput, InputAdornment, List
+    useTheme, IconButton, FormControl, InputLabel, OutlinedInput, InputAdornment, List, Button
 } from "@mui/material";
 import Logo from "../assets/images/logo.jpg";
 import {useEffect, useState} from "react";
@@ -24,6 +24,7 @@ const MainComponent = () => {
     const [openList, setOpenList] = useState(false);
     const [price, setPrice] = useState("0");
     const [unit, setUnit] = useState("0");
+    const [forBuy, setForBuy] = useState(true);
 
     const handleClickOpen = () => {
         setOpenList(prevState => !prevState);
@@ -42,24 +43,68 @@ const MainComponent = () => {
         setList(list)
     }
 
-    const onUnitChange = (e) => {
-        const re = /^\d+(\.\d{0,9})?$/;
-        console.log(e.target.value)
-        if (e.target.value === '' || re.test(e.target.value)) {
-            let number = parseFloat(e.target.value.toString())
-            if (!number) {
-                number = 0.0
+    const toDecimal = (number) => {
+        let val = number
+        if (number[number.length - 1] === ".") {
+            val = number
+        } else if (number === "") {
+            val = "0"
+        } else {
+            val = number.toString().split('.')
+            if (val[1]) {
+                val = parseInt(val[0]) + '.' + val[1]
+            } else {
+                val = parseInt(val[0])
             }
-            // console.log(number)
-            setUnit(number.toString())
+        }
+        return val
+    }
+
+    const calcPriceValue = (unit) => {
+        if (coin) {
+            const buy = forBuy ? toDecimal(coin[1].buy.toString().replaceAll(',', '')) : toDecimal(coin[1].sell.toString().replaceAll(',', ''))
+            const price = buy * parseFloat(unit)
+            setPrice(price)
+        }
+    }
+
+    const calcUnitValue = (price) => {
+        if (coin) {
+            const buy = forBuy ? toDecimal(coin[1].buy.toString().replaceAll(',', '')) : toDecimal(coin[1].sell.toString().replaceAll(',', ''))
+            const unit = buy / parseFloat(price)
+            setUnit(unit)
+        }
+    }
+
+    const onUnitChange = (e) => {
+        const re = /^\d*(?:[.,]\d*)?$/;
+        let number = e.target.value.toString()
+        let val = toDecimal(number)
+        if (re.test(val.toString())) {
+            setUnit(val)
+            setTimeout(() => {
+                calcPriceValue(val)
+            }, 200)
         }
     }
 
     const onPriceChange = (e) => {
-        const re = /^\d+(\.\d{0,9})?$/;
-        if (e.target.value === '' || re.test(e.target.value)) {
-            setPrice(e.target.value.toString())
+        const re = /^\d*(?:[.,]\d*)?$/;
+        let number = e.target.value.toString()
+        let val = toDecimal(number)
+        if (re.test(val.toString())) {
+            setPrice(val)
+            setTimeout(() => {
+                calcUnitValue(val)
+            }, 200)
         }
+    }
+
+    const toggleForBuy = () => {
+        setForBuy(prevState => !prevState)
+        setTimeout(() => {
+            calcPriceValue(unit)
+        }, 200)
     }
 
     useEffect(() => {
@@ -79,7 +124,8 @@ const MainComponent = () => {
     }, [prices])
 
     useEffect(() => {
-    }, [price])
+        calcPriceValue(unit)
+    }, [coin])
 
     return (
         <div className={"main-component"}>
@@ -159,7 +205,7 @@ const MainComponent = () => {
                     justifyContent={"center"}
                     sx={{direction: "ltr"}}
                 >
-                    <Grid item xs={3} spaceing={2}>
+                    <Grid item xs={3} sx={{margin: '0 5px'}} spaceing={2}>
                         <div className={"fake-coin-input"} onClick={handleClickOpen}>
                             <TextField fullWidth label="انتخاب ارز" size={"small"}/>
                             {
@@ -171,14 +217,30 @@ const MainComponent = () => {
                             }
                         </div>
                     </Grid>
-                    <Grid item xs={3} spaceing={2}>
-                        <TextField fullWidth value={unit} onChange={onUnitChange} label="واحد" type={"text"} size={"small"}/>
+                    <Grid item xs={3} sx={{margin: '0 5px'}} spaceing={2}>
+                        <TextField fullWidth value={unit} onChange={onUnitChange} label="واحد" type={"text"}
+                                   size={"small"}/>
                     </Grid>
-                    <Grid item xs={3} spaceing={2}>
-                        <TextField fullWidth value={price} onChange={onPriceChange} label="تومان" type={"text"} size={"small"}/>
+                    <Grid item xs={3} sx={{margin: '0 5px'}} spaceing={2}>
+                        <TextField fullWidth value={price} onChange={onPriceChange} label="تومان" type={"text"}
+                                   size={"small"}/>
                     </Grid>
                 </Grid>
+                <div className={"home-actions-button"}>
+                    {
+                        forBuy ?
+                            <div className={"buy-actions-button"}>
+                                <Button variant={"contained"}>در خواست خرید</Button>
+                                <Button className={"secondary"} sx={{border: 'unset'}} variant={"outlined"} onClick={toggleForBuy}>فروش</Button>
+                            </div>
+                            :
+                            <div className={"buy-actions-button"}>
+                                <Button className={"secondary"} sx={{border: 'unset'}} variant={"outlined"} onClick={toggleForBuy}>خرید</Button>
+                                <Button variant={"contained"}>در خواست فروش</Button>
+                            </div>
+                    }
 
+                </div>
             </Container>
         </div>
     )
