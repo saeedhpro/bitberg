@@ -1,0 +1,181 @@
+.App {
+    text-align: center;
+}
+
+.logo {
+    width: 65px;
+    cursor: pointer;
+}
+
+.link {
+    color: rgba(0, 0, 0, 0.6) !important;
+    background-color: rgba(0, 0, 0, 0.04);
+}
+
+.home-page {
+    margin-top: 35vh;
+    margin-bottom: -35vh;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.main-logo {
+    max-width: 270px;
+}
+
+.fake-coin-input {
+    cursor: pointer;
+}
+
+.fake-coin-input input {
+    cursor: pointer;
+}
+
+.choose-coin-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.coin-select-modal {
+    height: 680px;
+    width: 450px;
+    max-height: 90%;
+    border-radius: 12px;
+    display: flex;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    background-color: #fff;
+    max-width: 520px;
+}
+
+@media (min-width: 599px) {
+    .coin-select-modal {
+        height: 680px;
+        max-height: 90%;
+        border-radius: 12px;
+    }
+}
+
+.MuiPaper-rounded {
+    border-radius: 12px !important;
+    padding: 16px;
+}
+
+.coin-search {
+    min-width: 100%;
+    order: 3;
+}
+
+.coin-select-item-wrapper {
+    padding: 0 24px;
+    cursor: pointer;
+}
+
+.coin-select-item {
+    padding: 8px 0 !important;
+    border-bottom: 1px solid #e0e0e0;
+    width: 100%;
+    font-size: 14px;
+}
+
+.coin-list-item-clickable.selected {
+    height: 100% !important;
+    padding: 15px 10px !important;
+    border-radius: 12px !important;
+    background-color: rgba(0, 0, 0, 0.04) !important;
+    transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms !important;
+}
+
+.coin-list-item-clickable, .coin-list-item-clickable:hover {
+    height: 100% !important;
+    padding: 15px 10px !important;
+    border-radius: 12px !important;
+    transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms !important;
+}
+
+.coin-item-icon {
+    width: 40px;
+    height: 40px;
+    -webkit-flex-shrink: 0;
+    flex-shrink: 0;
+}
+
+.description-box {
+    display: flex;
+    width: 100%;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.description-box .title {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.price-box .buy-price, .title-box .title:last-child {
+    margin-top: 8px;
+}
+
+.is-item-selected {
+    margin: auto 0;
+}
+
+.price-box, .title-box {
+    text-align: right;
+}
+
+.fake-coin-input {
+    position: relative;
+}
+
+.fake-coin-input .fake-input {
+    display: flex;
+    flex-direction: row;
+    direction: rtl;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    right: 0;
+    left: 0;
+    top: 0;
+    bottom: 0;
+}
+
+.fake-coin-input .fake-input span {
+    margin-right: 10px;
+}
+
+.fake-coin-input .fake-input img {
+    height: 30px;
+}
+.MuiFormLabel-root {
+    font-weight: 400 !important;
+    font-size: 1rem !important;
+    line-height: 1.4375em !important;
+    letter-spacing: 0.00938em !important;
+    padding: 0 !important;
+    display: block !important;
+    transform-origin: top left !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    max-width: calc(133% - 24px) !important;
+    position: absolute !important;
+    left: 0 !important;
+    top: 0 !important;
+    -webkit-transform: translate(14px, -9px) scale(0.75) !important;
+    -moz-transform: translate(14px, -9px) scale(0.75) !important;
+    -ms-transform: translate(14px, -9px) scale(0.75) !important;
+    transform: translate(14px, -9px) scale(0.75) !important;
+    -webkit-transition: color 200ms cubic-bezier(0.0, 0, 0.2, 1) 0ms,-webkit-transform 200ms cubic-bezier(0.0, 0, 0.2, 1) 0ms,max-width 200ms cubic-bezier(0.0, 0, 0.2, 1) 0ms !important;
+    transition: color 200ms cubic-bezier(0.0, 0, 0.2, 1) 0ms,transform 200ms cubic-bezier(0.0, 0, 0.2, 1) 0ms,max-width 200ms cubic-bezier(0.0, 0, 0.2, 1) 0ms !important;
+    z-index: 1 !important;
+    pointer-events: auto !important;
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+    user-select: none !important;
+}
